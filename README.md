@@ -120,6 +120,12 @@ python3 scripts/verify.py
 
 `scripts/fetch_douyin_audio.py` 可以从**公开可播放**的短视频分享链接取音频轨再转写。它不伪造签名、不绕过风控、不下载私密内容：用真实浏览器打开页面，读取页面自身已发出的带签名请求，只取声音。详见 `分发与合规说明.md` 第 5 节。
 
+## 版本说明
+
+当前仓库标注为 **WorkBuddy 版**，对应 Release [`v1.4.1-workbuddy`](https://github.com/chengfeiai/audio-transcript-skill/releases/tag/v1.4.1-workbuddy)。技能包源码与 `v1.0.0` 完全相同；这一版只补了平台标识、安装说明和可直接解压的压缩包，没有改动脚本、样式或模板。
+
+完整的版本、安装与分发边界见 [`README-WorkBuddy.md`](README-WorkBuddy.md)，这份说明也随压缩包一起分发。
+
 ## 许可
 
 MIT，见 `LICENSE`。第三方库与模型各有自己的许可，MIT 不覆盖它们。
