@@ -48,5 +48,6 @@
     }
   ],
   "updated": "2026-11-11",
-  "version": "1.4.0"
+  "version": "1.4.0-dsh",
+  "edition": "DSH"
 }
