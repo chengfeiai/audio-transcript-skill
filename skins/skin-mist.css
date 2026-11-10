@@ -1,0 +1,259 @@
+/* 灰蓝粉彩 — 录音纪要皮肤层（追加式：以独立 <style data-skin> 注入主 style 之后，不改模板原 CSS）
+   参照 = 模板原始输出；本层含 v1 视觉优化覆盖 + 该皮肤专属层 */
+:root{
+  /* 设计取值 */
+  --canvas:#DDE1E7;
+  --panel:#FFFFFF;
+  --panel-hd:#F7F6F3;
+  --brand:#1E64FF;
+  --brand-2:#70A7FF;
+  --brand-bg:#EBF4FF;
+  --ink:rgba(0,0,0,.90);
+  --ink-6:rgba(0,0,0,.62);
+  --ink-4:rgba(0,0,0,.40);
+  --line:rgba(0,0,0,.08);
+  --line-2:rgba(0,0,0,.06);
+  --slate:#2C3E50;
+  --amber:#B26A00;
+  --amber-bg:#FFF7E6;
+  --green:#1F7A55;
+  --green-bg:#EAF7F1;
+  --r:12px;
+  --r-lg:16px;
+  --hd:56px;
+  --pl:64px;
+}
+body{margin:0;color:var(--ink);
+  background:#DDE1E7;
+  font:var(--fs-md)/var(--lh-md) "PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow:hidden}
+/* ============ 背景氛围层 ============ */
+.bg{display:none;position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;contain:paint}
+.panel{position:relative;min-width:0;min-height:0;display:flex;flex-direction:column;
+  background:#fff;
+  border-radius:16px;overflow:hidden;
+  box-shadow:
+    0 1px 2px rgba(16,24,40,.05),
+    0 2px 6px rgba(16,24,40,.05),
+    0 24px 48px -24px rgba(16,24,40,.25),
+    0 0 0 1px rgba(16,24,40,.06)}
+#pR{box-shadow:
+    0 1px 2px rgba(16,24,40,.05),
+    0 2px 6px rgba(16,24,40,.05),
+    0 24px 48px -24px rgba(16,24,40,.25),
+    0 0 0 1px rgba(16,24,40,.06)}
+#pR::before{background:linear-gradient(90deg,
+    rgba(30,100,255,.9),rgba(112,167,255,.45) 30%,rgba(30,100,255,.08) 66%,rgba(30,100,255,0))}
+.p-hd{height:var(--hd);flex:none;display:flex;align-items:center;gap:14px;padding:0 18px;
+  background:#F7F6F3;
+  border-bottom:1px solid var(--line-2);position:relative;z-index:2}
+.tab{border:0;background:transparent;font:600 var(--fs-lg)/1 "PingFang SC";color:rgba(0,0,0,.48);
+  padding:7px 8px;border-radius:8px;cursor:pointer;letter-spacing:.01em;transition:.16s}
+/* ============ 左栏目录 ============ */
+.subnav{flex:none;display:flex;gap:2px;padding:8px 16px;overflow-x:auto;scrollbar-width:none;
+  border-bottom:1px solid var(--line-2);background:#fff}
+.subnav a{flex:none;display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:8px;
+  font-size:var(--fs-sm);color:rgba(0,0,0,.58);text-decoration:none;white-space:nowrap;transition:.15s}
+/* ============ 滚动体 ============ */
+.p-bd{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+  scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.22) transparent}
+.p-bd::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:9px;
+  border:3px solid #fff}
+.kicker{display:flex;align-items:center;gap:8px;font-size:var(--fs-xs);letter-spacing:.18em;
+  color:rgba(0,0,0,.55);margin-bottom:14px}
+.meta dt{font-size:var(--fs-xs);color:rgba(0,0,0,.55);letter-spacing:.06em;margin-bottom:3px}
+/* ============ 结论卡 ============ */
+.brief{margin:26px 0 0;padding:20px 22px;background:#FBFCFE;border:1px solid #DCE5F5;
+  border-left:3px solid var(--brand);border-radius:var(--r-lg)}
+.brief .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:15px;padding-top:13px;
+  border-top:1px solid var(--line)}
+/* ============ 右栏工具条 ============ */
+.r-tools{flex:none;padding:12px 18px 10px;border-bottom:1px solid var(--line-2);
+  background:#fff;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rhythm-bars span{cursor:pointer;opacity:.95;transition:opacity .14s,transform .14s;
+  transform-origin:bottom;min-width:1px}
+/* ============ 播放条 ============ */
+/* 播放条几何由模板统一管理（内嵌卡片），皮肤只负责配色 */
+#pg i{display:block;height:100%;width:0;transition:width .1s linear;
+  background:linear-gradient(90deg,#1E64FF,#70A7FF)}
+/* ============ 窄屏 ============ */
+:focus-visible{outline:2px solid rgba(30,100,255,.6);outline-offset:2px}
+@media (max-width:520px){
+  .meta{grid-template-columns:minmax(0,1fr)}
+  .p-hd{height:auto;flex-wrap:wrap;padding:9px 12px;gap:8px 10px}
+  .tabs{flex:none}
+  .tab{white-space:nowrap;flex:none;font-size:var(--fs-lg);padding:6px 6px}
+  .p-hd .right{flex:none}
+  .ibtn.txt{white-space:nowrap}
+}
+/* ===== 分节粉彩配色：四节各一色系（按设计稿量测 · 仅屏幕，打印不变） =====
+   画布 #E0E1E5 / 面板白 / 板块粉彩分色：玫红·绿·蓝·金，卡片白底、结论条粉彩底 */
+@media screen{
+  :root{--canvas:#FFFFFF;--line:#E4E4E7;--line-2:#ECECEF}
+  /* 整页一体化：两栏不再像两张浮起的卡片，而是同一页面上的两列，只靠发丝线分隔 */
+  body{background:#FFFFFF}
+  .app{padding:0;gap:0}
+  .panel,#pR{box-shadow:none;border:0;border-radius:0;background:#FFFFFF}
+  #pL{border-right:1px solid #E7E9EC}
+  .panel::before,.panel::after{display:none}
+  .player{--player-bg:#F4F5F8;border-color:#E3E6EA}
+  .p-hd{background:#FFFFFF}
+  .subnav,.r-tools{background:#FFFFFF}
+  /* 播放条独立卡片底色，与上方正文区分开 */
+  .player{background:var(--player-bg,#F5F6F8)}
+  h1{font-weight:800;letter-spacing:0}
+  .doc-sub{color:#6B7280}
+  /* —— 章节：✦ 标记 + 彩色标题（玫红/绿/蓝/金） —— */
+  .sec-hd::before{content:"✦";margin-right:7px;font-size:var(--fs-lg);line-height:1;align-self:center}
+  #s1 .sec-hd::before{color:#D96A5F} #s2 .sec-hd::before{color:#6A9A5E}
+  #s3 .sec-hd::before{color:#3E6FB0} #s4 .sec-hd::before{color:#C9932B}
+  #s1 .sec-hd h3{color:#D96A5F} #s2 .sec-hd h3{color:#6A9A5E}
+  #s3 .sec-hd h3{color:#3E6FB0} #s4 .sec-hd h3{color:#C9932B}
+  .sec-no{display:none}
+  .sec-hd{border-bottom:0;padding-bottom:2px}
+  /* —— 卡片：白底 + 板块色细边，底部结论条换粉彩 —— */
+  .card{border-radius:14px;box-shadow:none}
+  .card:hover{transform:none;box-shadow:0 6px 18px rgba(16,24,40,.06)}
+  #s1 .card{border-color:#F0D8D3} #s2 .card{border-color:#D9E4CF}
+  #s3 .card{border-color:#CCDEF2} #s4 .card{border-color:#EDDCB8}
+  #s1 .card-hd .dot{background:#D96A5F} #s2 .card-hd .dot{background:#6A9A5E}
+  #s3 .card-hd .dot{background:#3E6FB0} #s4 .card-hd .dot{background:#C9932B}
+  #s1 .fact{background:#F9E9EA;color:#BE5A50} #s2 .fact{background:#EBF1E5;color:#5F7F52}
+  #s3 .fact{background:#E6F4FF;color:#3E6FB0} #s4 .fact{background:#FAF0DC;color:#A87C22}
+  .fact{border-top:0;font-weight:600}
+  /* —— 结论框：玫红系白卡 —— */
+  .brief{background:#FFFFFF;border-color:#F0D8D3;border-left:1px solid #F0D8D3;border-radius:14px}
+  .brief h2{color:#D96A5F}
+  .brief h2::before{content:"✦";margin-right:7px;font-size:var(--fs-xs)}
+  .chip.no{background:#F9E9EA;border-color:transparent;color:#BE5A50}
+  .chip.ok{background:#EBF1E5;border-color:transparent;color:#5F7F52}
+  .chip.mid{background:#F2F3F5;border-color:transparent;color:#6B7280}
+  /* —— 时间引用：浅蓝灰胶囊 —— */
+  .cite{background:#EEF3FA;color:#3E6FB0}
+  .cite:hover{background:#DCE9F8;color:#2F5C96}
+  /* —— 交锋链条：浅蓝面 + 白卡（照参照第三节） —— */
+  .duel{background:#EDF4FC;border-color:#CCDEF2;border-radius:14px}
+  .duel-side{background:#FFFFFF;border-radius:10px}
+  .duel-side.a{background:#FFFFFF}
+  .track i{background:linear-gradient(90deg,#3E6FB0,#7FA8D9)}
+  /* —— 时间线：浅蓝面、白行、蓝圆徽 —— */
+  #s3 .steps{background:#EDF4FC;border:1px solid #CCDEF2;border-radius:14px;padding:16px 18px}
+  .step-dot{background:#3E6FB0;border-color:#3E6FB0;color:#FFFFFF}
+  .step:first-child .step-dot{background:#3E6FB0;border-color:#3E6FB0}
+  .step::before{background:#C7D9EE}
+  .step .tag{background:#FFFFFF;color:#3E6FB0}
+  /* —— 待核清单：白行金边、勾选金色 —— */
+  .checks li{border-color:#EDDCB8}
+  .checks li:hover{border-color:#DEC98F;background:#FFFDF6}
+  .checks input:checked{background:#C9932B;border-color:#C9932B}
+  /* —— 右栏：转写 —— */
+  .hd-badge{background:#F2F3F5;color:#6B7280}
+  .rhythm{border-color:#ECECEF}
+  .rhythm-bars{filter:saturate(.58) brightness(1.10);opacity:.92}
+  .seg-t{color:#9AA0A8}
+  .seg-who{color:#6B7280}
+  .seg-who::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;vertical-align:1px}
+  .seg.sp-a .seg-who::before{background:#1E64FF}
+  .seg.sp-b .seg-who::before{background:#D69A2D}
+  .seg.sp-c .seg-who::before{background:#1F7A55}
+  .seg{color:#2B2B2B}
+  .seg.flash{background:#FDF3E0;box-shadow:inset 3px 0 0 #FAAD14}
+  .fbtn.on{background:#F2F3F5;color:#111111;box-shadow:none}
+  /* —— 播放器：黑键、深灰进度（照参照极简播放条） —— */
+  .pl-play{background:var(--brand)}
+  .pl-play:hover{background:var(--brand-2);color:#FFFFFF}
+  .pl-bar{background:#EDEFF2}
+  .pl-bar i{background:var(--brand)}
+  .pl-bar i::after{background:var(--brand)}
+  #pg i{background:#111111}
+  /* —— 页签彩色圆点（照参照：纪要蓝点 / 笔记黄点） —— */
+  .tab::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#C0C4CC;margin-right:7px;vertical-align:2px}
+  #tabL::before{background:#1E64FF}
+  #pR .tab::before{background:#FAAD14}
+}
+
+
+/* ===== 候选 Y：层级逻辑 1:1（在 X 之上重构层级 · 仅屏幕） =====
+   照参照全页：纪要=标题块→✦分节→粉彩壳白芯卡（双列）→浅蓝决策面板；
+   笔记=独立标题卡+内容卡，标题行（绿点+录音名），转写=说话人·时间在上、正文在下 */
+@media screen{
+  .doc{background:#F7F8FA;border-radius:14px;padding:18px 20px 6px;margin:0 -6px}
+  /* —— 卡片双列 + 粉彩壳白芯 —— */
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  #s1 .card,#s2 .card{border:0;padding:10px}
+  #s1 .card{background:#F6E7E3} #s2 .card{background:#E9F0E1}
+  #s1 .card-hd,#s2 .card-hd{background:#FFFFFF;border-radius:9px 9px 0 0;margin:0;padding:11px 13px 5px}
+  #s1 .card-bd,#s2 .card-bd{background:#FFFFFF;border-radius:0 0 9px 9px;padding:1px 13px 11px}
+  #s1 .fact,#s2 .fact{background:transparent;padding:8px 3px 0}
+  .card:hover{transform:none}
+  /* —— 结论框同法：玫红壳 + 白芯 + 壳上结论签 —— */
+  .brief{background:#F6E7E3;border:0;padding:10px}
+  .brief ol{background:#FFFFFF;border-radius:9px;margin:0;padding:13px 16px 13px 30px}
+  .brief .chips{border-top:0;margin-top:9px;padding-top:0}
+  .brief .chip{background:#FFFFFF}
+  /* —— 对峙：绿壳白卡 —— */
+  .duel{background:#E9F0E1;border:0;padding:10px}
+  .duel-hd{background:transparent}
+  .duel-side{border-radius:9px;padding:12px 14px}
+  .duel-vs span{background:#E9F0E1}
+  .track{background:#E3E8DC}
+  .track::before{background:#FFFFFF}
+  /* —— 决策路径：浅蓝壳 + 白芯行 —— */
+  #s3 .steps{background:#E3EFFC;border:0;padding:10px}
+  #s3 .step{background:#FFFFFF;padding:12px 14px 4px}
+  #s3 .step:first-child{border-radius:9px 9px 0 0}
+  #s3 .step:last-child{border-radius:0 0 9px 9px;padding-bottom:12px}
+  /* —— 待核：金壳白行 —— */
+  #s4 .checks{background:#F7ECD2;border-radius:14px;padding:10px}
+  #s4 .checks li{background:#FFFFFF;border:0;margin:0}
+  /* —— 右栏拆两卡：标题卡独立 + 内容卡 —— */
+  #pR{background:#FFFFFF;box-shadow:none;border-radius:0;overflow:visible;filter:none}
+  #pR .p-hd{background:#FFFFFF;border-radius:0;margin-bottom:0;box-shadow:none;border-bottom:1px solid #EFF0F1}
+  #pR .r-tools{background:#FFFFFF;border-radius:0;border-bottom:1px solid #ECECEF}
+  #pR #colR{background:#FFFFFF}
+  #pR .player{background:var(--player-bg,#F5F6F8)}
+  /* —— 笔记标题行：绿点 + 录音名 —— */
+  .rhythm{position:relative;padding-top:38px}
+  .rhythm::before{content:attr(data-title);position:absolute;top:11px;left:32px;font:700 var(--fs-sm) "PingFang SC","Microsoft YaHei",sans-serif;color:#111111;white-space:nowrap}
+  .rhythm:not([data-title])::before{content:none}
+  .rhythm::after{content:"";position:absolute;top:16px;left:16px;width:8px;height:8px;border-radius:50%;background:#52C41A}
+  /* —— 转写层级：说话人·时间一行在上，正文整行在下 —— */
+  .seg{grid-template-columns:auto 1fr;grid-template-areas:"who time" "text text";column-gap:7px;row-gap:1px;padding:9px 12px}
+  .seg-t{grid-area:time;align-self:center;justify-self:start;text-align:left}
+  .pl-note{max-width:30%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg-who{grid-area:who;align-self:center}
+  .seg-x{grid-area:text}
+  /* —— 播放条：沿用模板原始播放条（圆形播放键、3px 进度条） —— */
+}
+
+
+@media screen and (max-width:920px){
+  .grid{grid-template-columns:1fr}
+  .rhythm::before{white-space:normal}
+}
+
+/* ===== 框架复核：双列卡片与解剖再优化（仅屏幕） ===== */
+@media screen{
+  /* —— 框架：左右两栏各自独立滚动，互不带动 —— */
+  /* —— 标题区与前三节并成整块浅灰面（参照同一容器） —— */
+  .doc{border-radius:14px 14px 0 0;padding-bottom:4px}
+  #s1,#s2,#s3{background:#F7F8FA;margin-left:-6px;margin-right:-6px;padding-left:18px;padding-right:18px}
+  /* s1–s3 合成一整块浅灰面，板块标题靠内边距与上文拉开距离 */
+  #s1{margin-top:0;padding-top:30px}
+  #s2,#s3{margin-top:0;padding-top:32px}
+  #s3{border-radius:0 0 14px 14px;padding-bottom:20px}
+  /* —— 卡片解剖修正：壳色加深、结论改为壳内浅色条 —— */
+  #s1 .card{background:#F5E2DB}
+  #s2 .card{background:#E4EDD8}
+  #s1 .fact{background:#FAECE9;border-radius:6px;padding:6px 9px;margin-top:8px}
+  #s2 .fact{background:#EFF5E6;border-radius:6px;padding:6px 9px;margin-top:8px}
+  .brief{background:#F5E2DB}
+  .duel{background:#E4EDD8}
+  /* —— 转写标签行照参照：说话人与时间同为浅灰、无圆点 —— */
+  .seg-who{font-weight:400}
+  .seg.sp-a .seg-who,.seg.sp-b .seg-who,.seg.sp-c .seg-who{color:#9AA0A8}
+  .seg.sp-a .seg-who::before,.seg.sp-b .seg-who::before,.seg.sp-c .seg-who::before{display:none}
+  /* —— 播放条上方补章节胶囊（文案复用本页摘要原句） —— */
+  /* 说明行：卡内普通说明文字（不再做成第二个方框） */
+}

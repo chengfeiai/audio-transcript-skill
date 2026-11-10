@@ -1,0 +1,34 @@
+# 录音转写 · 依赖清单
+#
+# 分两档：渲染链路零第三方依赖（系统 python3 即可出页）；转写/说话人分离才需要重依赖。
+# 安装（Apple Silicon macOS / Python 3.11 推荐）：
+#   python3 -m venv ~/.venvs/whisper && source ~/.venvs/whisper/bin/activate
+#   pip install -r requirements.txt
+# 本包不含虚拟环境、模型、录音或用户数据；模型首次运行按需下载。
+
+## ---- 渲染链路：仅标准库，无需安装任何东西 ----
+# render_split.py / render_minutes.py：只用 os/sys/re/json/html/argparse/subprocess 等标准库。
+
+## ---- 转写链路（transcribe.py）：mlx-whisper 本地转写 ----
+mlx-whisper
+imageio-ffmpeg          # 提供 ffmpeg 可执行文件；get_ffmpeg() 优先取它，再退回 PATH/brew
+
+## ---- 说话人分离（diarize.py）：在转写链路之上额外需要 ----
+numpy
+soundfile
+torch
+speechbrain            # ECAPA 声纹模型 EncoderClassifier，首次自动下载约 200MB
+scikit-learn           # KMeans + silhouette_score 自动估说话人数
+mlx-whisper            # 与转写链路共用
+imageio-ffmpeg         # 与转写链路共用
+
+## ---- 深色 v3 图文纪要（render_minutes.py 可选繁→简）----
+opencc-python-reimplemented   # 仅当 --transcript 文本含繁体、需要转简时；函数内 lazy import，缺失不阻断
+
+## ---- 可选：TTS 测试占位音频（SKILL.md「引擎」节提到，非流水线必需）----
+# edge-tts
+
+## ---- 环境备注 ----
+# - 需要 ffmpeg：脚本优先用 imageio_ffmpeg.get_ffmpeg_exe()，其次 PATH / brew，一般无需手动软链。
+# - 模型：mlx-community/whisper-medium-mlx（可换 small/large/turbo）；HuggingFace 缓存按需下载。
+# - 云端转写为外部服务，本包不含其 SDK；外部整理稿用 --transcript 接入渲染即可。

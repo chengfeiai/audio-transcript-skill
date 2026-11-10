@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-11-10",
+  "local_engine": {
+    "name": "mlx-whisper",
+    "models": ["small", "medium", "large", "turbo"],
+    "verified_languages": ["zh"],
+    "supports_multilingual": true,
+    "caveat": "whisper 理论支持约 99 种标准语，本地链路面向标准语场景。非中文语种、方言、混说均未验证，不宣称准确率。"
+  },
+  "whisper_lang_codes": {
+    "zh": "中文（普通话）", "yue": "粤语（标准）", "en": "英语", "ja": "日语", "ko": "韩语",
+    "de": "德语", "ru": "俄语", "fr": "法语", "th": "泰语", "es": "西班牙语",
+    "ar": "阿拉伯语", "it": "意大利语", "vi": "越南语", "id": "印尼语", "ms": "马来语",
+    "hi": "印地语", "mn": "蒙古语", "tr": "土耳其语", "pt": "葡萄牙语", "nl": "荷兰语"
+  },
+  "cloud_only_dialects": [
+    "中文-四川话", "中文-粤语", "中文-山东话", "中文-河南话", "中文(上海话)", "中文-江苏话",
+    "中文-贵州话", "中文-湖北话", "中文-云南话", "中文-安徽话", "中文-河北话", "中文-东北话",
+    "中文-重庆话", "中文-山西话", "中文-湖南话", "中文-浙江话", "中文-陕西话", "中文-内蒙话",
+    "中文-广西话", "中文-福建话", "中文-甘肃话", "中文-新疆话", "中文-天津话", "中文-江西话"
+  ],
+  "cloud_only_foreign_languages": [
+    "英语", "日语", "韩语", "德语", "俄语", "法语", "泰语", "阿拉伯语", "西班牙语",
+    "维语", "意大利语", "菲律宾语", "越南语", "印尼语", "蒙古语", "马来语", "印地语", "藏语"
+  ],
+  "capabilities_not_in_local_engine": {
+    "mixed_speech": ["中英混说", "粤普英混说"],
+    "translation": "24 种语言自由转译 / 英日韩等 8 国语言互译 / 9 国实时同传 / 14 种语言音视频字幕翻译",
+    "vertical_models": ["教育", "医疗", "法律", "IT科技", "财经贸易", "文化体育", "运营商", "司法", "医疗养生", "情感", "时事新闻"],
+    "accuracy_claim": "第三方宣称的高准确率，本包未复测、不宣称"
+  },
+  "routing_rule": "方言重 / 串音多 / 非标准语 / 需要翻译时，按 SKILL.md「引擎选择：本地不准就换云端」的结论，显式走 engines.py --engine cloud 或 workbuddy，并提示数据出本机；不要在本地 medium 上调 temperature 死磕。",
+  "translation_task": "analyze.py --tasks translate --target <lang> --engine cloud|workbuddy（默认关闭）"
+}

@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# 本地私有配置：真实敏感词表不上仓库
+private-keywords.txt
+
+# 本地音频 / 转写产物（体积大、含个人内容）
+*.m4a
+*.mp3
+*.wav
+*.aiff
+*.flac
+*.ogg
+*.mp4
+*.srt
+*.vtt
+
+# 渲染产物
+*-交互纪要*.html
+*-双栏*.html
+*-图文纪要*.html
+*-导出Word.docx

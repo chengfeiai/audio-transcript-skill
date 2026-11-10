@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE_TAG__</title>
+<style>__CSS__</style>
+</head>
+<body data-title="__SKIN_TITLE__" data-subline="__SKIN_SUBLINE__">
+<div class="bg" aria-hidden="true">
+  <i class="g1"></i><i class="g2"></i><i class="g3"></i>
+  <div class="top"></div>
+  <div class="vig"></div>
+</div>
+<div id="pg"><i></i></div>
+<div class="app">
+
+  <!-- ========== 左：纪要 ========== -->
+  <section class="panel" id="pL">
+    <div class="p-hd">
+      <span class="mark"><svg viewBox="0 0 24 24"><path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm2 5h6v2H9V8zm0 4h6v2H9v-2zm0 4h4v2H9v-2z"/></svg></span>
+      <div class="tabs">
+        <button class="tab on" id="tabL" type="button">纪要</button>
+        <button class="tab" id="tabR" type="button">原文</button>
+      </div>
+      <div class="right">
+        <div class="pill">
+          <button class="ibtn txt" id="btnPrint" type="button">打印</button>
+          <button class="ibtn" id="btnTop" type="button" title="回到顶部" aria-label="回到顶部">
+            <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="subnav">
+__SUBNAV__
+    </div>
+
+    <div class="p-bd" id="colL">
+      <div class="doc">
+        <div class="kicker">__KICKER__</div>
+        <h1>__TITLE_HTML__</h1>
+        <p class="doc-sub">__DOCSUB__</p>
+        <dl class="meta">
+__META_ROWS__
+        </dl>
+
+        <div class="brief">
+          <h2>__BRIEF_TITLE__</h2>
+          <ol>
+__BRIEF_ITEMS__
+          </ol>
+          <div class="chips">
+__CHIPS__
+          </div>
+        </div>
+      </div>
+
+__SECTIONS__
+
+      <footer class="decl">
+__DECL__
+        <p class="stamp mono">__STAMP__</p>
+</footer>
+    </div>
+  </section>
+
+  <!-- ========== 分栏拖拽条（仅并排时可见） ========== -->
+  <div class="splitter" id="splitter" role="separator" aria-orientation="vertical"
+       tabindex="0" aria-label="拖动调整左右栏宽度，双击恢复默认"></div>
+
+  <!-- ========== 右：原文 ========== -->
+  <section class="panel" id="pR">
+    <div class="p-hd">
+      <div class="tabs"><span class="tab on" style="cursor:default">转写全文</span><span class="hd-badge mono" id="cntTop">__SEGCOUNT__ 段</span></div>
+      <div class="right">
+        <div class="pill">
+          <button class="ibtn" type="button" id="btnFocus" title="搜索（/）" aria-label="搜索">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+          </button>
+          <button class="ibtn" type="button" title="按说话人筛选（见下方）" aria-label="筛选">
+            <svg viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
+          </button>
+          <button class="ibtn" type="button" onclick="window.print()" title="打印 / 存为 PDF" aria-label="打印">
+            <svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M6 14h12v7H6z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-tools">
+      <div class="search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+        <input id="q" type="search" placeholder="__SEARCH_PH__" aria-label="搜索全文">
+      </div>
+      <div class="seg-ctl">
+        <button class="fbtn on" type="button" data-who="all">全部</button>
+__FILTERS__
+      </div>
+      <span class="count" id="cnt" aria-live="polite"></span>
+    </div>
+
+    <div class="p-bd" id="colR">
+      <div class="rhythm" id="rhythm" data-title="__SKIN_TITLE__">
+        <div class="rhythm-hd">
+          <h5>发言节奏</h5>
+          <div class="rhythm-lg">__RHYTHM_LEGEND__</div>
+        </div>
+        <div class="rhythm-bars" id="rbar"></div>
+        <div class="rhythm-axis" id="rax"></div>
+      </div>
+      <div class="empty" id="empty" hidden>
+        <b>没有匹配的段落</b>
+        <p>当前条件 <span class="empty-kw"></span><span class="empty-sub"></span></p>
+        <button type="button" id="clr">清空搜索与筛选</button>
+      </div>
+      <div id="transcript">__TRANSCRIPT__</div>
+    </div>
+
+    <footer class="player" data-caption="__SKIN_CAPTION__">
+      <div class="pl-bar" role="slider" aria-label="播放进度"><i id="plFill"></i></div>
+      <div class="pl-row">
+        <audio id="au" preload="metadata" src="__AUDIO__"></audio>
+        <button class="pl-btn pl-skip" type="button" data-d="-10" title="后退 10 秒" aria-label="后退 10 秒">
+          <svg viewBox="0 0 24 24"><path d="M11 5.6c0-.9 1-1.4 1.7-.9l8.1 5.4c.7.5.7 1.6 0 2.1l-8.1 5.4c-.7.5-1.7 0-1.7-.9V5.6z"/><rect x="4" y="5" width="2.2" height="14" rx="1.1"/></svg>
+        </button>
+        <button class="pl-btn pl-play" id="plBtn" type="button" aria-label="播放/暂停"></button>
+        <button class="pl-btn pl-skip" type="button" data-d="10" title="前进 10 秒" aria-label="前进 10 秒">
+          <svg viewBox="0 0 24 24"><path d="M13 5.6c0-.9-1-1.4-1.7-.9L3.2 10.1c-.7.5-.7 1.6 0 2.1l8.1 5.4c.7.5 1.7 0 1.7-.9V5.6z"/><rect x="17.8" y="5" width="2.2" height="14" rx="1.1"/></svg>
+        </button>
+        <span class="pl-time"><span id="plCur">00:00</span> / <span id="plDur">__DUR__</span></span>
+        <span class="pl-note" id="auNote">音频正在载入…</span>
+        <div class="pl-speed-wrap" id="plSpeedWrap">
+          <button class="pl-speed" id="plSpeed" type="button" title="播放速度"
+                  aria-haspopup="listbox" aria-expanded="false">1.0x</button>
+          <div class="pl-rate-menu" id="plRateMenu" role="listbox" aria-label="播放速度" hidden></div>
+        </div>
+        <button class="pl-btn pl-mute" id="plMute" type="button" title="静音" aria-label="静音"></button>
+        <input class="pl-vol" id="plVol" type="range" min="0" max="1" step="0.05" value="1"
+               aria-label="音量" title="音量">
+        <label class="pl-file" id="plFileWrap" title="音频没找到？点这里选本地文件">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4h-2v4H6V6h4V4zm7.5-1.5a2.1 2.1 0 0 1 3 3L12 14l-3.5.5.5-3.5 8.5-8.5z"/></svg>
+          <input id="plFile" type="file" accept="audio/*,.m4a,.mp3,.wav,.aac,.ogg,.flac">
+        </label>
+      </div>
+    </footer>
+  </section>
+</div>
+
+<div id="tip"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>__JS__</script>
+<!-- 导出 Word / 复制文字（零依赖，file:// 可用） -->
+<script id="minutes-tools">__TOOLS_JS__</script>
+</body></html>

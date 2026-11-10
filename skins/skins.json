@@ -1,0 +1,52 @@
+{
+  "applies_to": "录音纪要 HTML（交互版模板输出，即 build_minutes_interactive 一系的成品页）",
+  "default_skin": "mist",
+  "inject": "把所选皮肤 CSS 全文放入独立 <style data-skin=\"<id>\"> 元素，置于主 <style> 之后、</head> 之前。禁止把皮肤 CSS 拼接到主 style 末尾（见 README 的坑）。皮肤全部是 @media screen 规则，打印自动走模板原始打印样式，无需处理。",
+  "selection_point": "意图问卷全部完成后、生成 HTML 之前，向用户展示皮肤选择（预览图+名称+一句话），用户点选后按所选皮肤生成；用户不选则用 default_skin",
+  "skins": [
+    {
+      "desc": "模板原生样式，不加任何皮肤层",
+      "file": null,
+      "id": "default",
+      "name": "模板原生",
+      "preview": "previews/default.png"
+    },
+    {
+      "desc": "灰蓝画布＋四节粉彩分色（粉/绿/蓝/杏）＋双列白芯卡片＋柔和多层阴影，单页长文，信息密度高",
+      "file": "skin-mist.css",
+      "id": "mist",
+      "name": "灰蓝粉彩",
+      "preview": "previews/mist.png"
+    },
+    {
+      "desc": "黑曜底 #07080A＋骨白正文 #F3F5F8＋四节深夜分色（暗红/暗绿/暗蓝/暗金）＋薄荷 #8BF3E6 强调，结构与灰蓝粉彩一致",
+      "file": "skin-obsidian.css",
+      "id": "obsidian",
+      "name": "黑曜潮青",
+      "preview": "previews/obsidian.png"
+    },
+    {
+      "desc": "纯白无卡无阴影＋发丝线分栏＋左窄右宽 38:62（可拖动分隔条调整）＋紫→粉渐变标题＋彩色圆头像转写行，单列大纲、整页一滚",
+      "file": "skin-plain.css",
+      "id": "plain",
+      "name": "素白极简",
+      "preview": "previews/plain.png"
+    },
+    {
+      "desc": "深藏青＋蓝图细网格＋宋体标题＋一处橙，声线（发言节奏条）带律动动效，学术报告气质",
+      "file": "skin-dark.css",
+      "id": "dark",
+      "name": "深蓝学术",
+      "preview": "previews/dark.png"
+    },
+    {
+      "desc": "#F7F7F7 中性画布＋白卡 1px #EBEBEB 描边＋唯一强调 #335CFF，Badge/Tabs/Filter/Table/Tooltip 组件语义，克制阴影",
+      "file": "skin-neutral.css",
+      "id": "neutral",
+      "name": "中性灰阶",
+      "preview": "previews/neutral.png"
+    }
+  ],
+  "updated": "2026-11-11",
+  "version": "1.4.0"
+}
