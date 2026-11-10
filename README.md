@@ -1,5 +1,7 @@
 # 录音转写 · Audio Transcript Skill
 
+> **WorkBuddy 版** · 这一版按 WorkBuddy 技能包组织：`SKILL.md` 是技能定义，整个文件夹可以直接放进 skills 目录用 `@skill:"录音转写"` 调用；也可以脱离 WorkBuddy，按下面的命令行方式单独使用。
+
 把一段录音变成**能点着回听的交互纪要**，而不是一段躺在 txt 里的流水文字。
 
 输入 `m4a` / `mp3` / `wav`，输出：
@@ -24,6 +26,15 @@
 | 给同事看 | 截图 + 手打要点 | 导出 Word，纪要 + 全文两档可选 |
 | 长录音回听 | 从头听 | 节奏条显示哪里话密，可按说话人筛选 |
 | 现场确认 | 会后整理 | `record.py` 边录边转，实时字幕 |
+
+## 在 WorkBuddy 中使用
+
+1. 从 [Releases](https://github.com/chengfeiai/audio-transcript-skill/releases) 下载 **WorkBuddy 版**压缩包，解压出 `录音转写/` 文件夹。
+2. 把整个文件夹放进当前 profile 的 `skills` 目录，重新加载技能后即可调用。
+3. 转写链路依赖按 `requirements.txt` 自备；渲染器只用系统 `python3`，无需额外安装。
+4. 压缩包内不含 `LICENSE`，授权见仓库根目录 `LICENSE`（MIT），转发时请一并附上。
+
+不用 WorkBuddy 也没关系，下面的命令行流程用的是同一套脚本。
 
 ## 快速开始
 
