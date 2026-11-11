@@ -1,6 +1,6 @@
 # 录音转写 · Audio Transcript Skill
 
-> **本仓库按平台分发两个版本**：**DSH 版**（frontmatter 用 `metadata.version`，装进 DSH profile 的 skills 目录）与 **WorkBuddy 版**（`@skill:"录音转写"` 调用）。两者源码完全一致，只是分发形态与安装说明不同，按需取用。
+> 本仓库提供 DSH 插件版和 WorkBuddy 技能包。DSH 插件注册技能名 `audio-transcript`；WorkBuddy 版使用 `@skill:"录音转写"`。两者共用转写与渲染脚本。
 
 把一段录音变成**能点着回听的交互纪要**，而不是一段躺在 txt 里的流水文字。
 
@@ -29,10 +29,9 @@
 
 ## 在 DSH 中使用
 
-1. 从 [Releases](https://github.com/chengfeiai/audio-transcript-skill/releases) 下载 **DSH 版**压缩包，解压出 `录音转写/` 文件夹。
-2. 把整个文件夹放进当前 DSH profile 的 skills 目录（默认 `~/.dsh/skills/`），重新加载后即可按技能名 `录音转写` 调用。
-3. 转写链路依赖按 `requirements.txt` 自备；渲染器只用系统 `python3`，无需额外安装。
-4. 压缩包内不含 `LICENSE`，授权见仓库根目录 `LICENSE`（MIT），转发时请一并附上。
+通过 DSH 插件管理器安装本仓库的插件 bundle。启用后技能名为 `audio-transcript`；技能资源随插件提供，无需手动复制到 skills 目录。详见 [DSH 版说明](README-DSH.md)。
+
+转写链路依赖按 `requirements.txt` 自备，首次使用模型可能需要下载；渲染器使用 Python 标准库。插件包包含 MIT 许可证。
 
 不用 DSH 也没关系，下面的命令行流程用的是同一套脚本。
 

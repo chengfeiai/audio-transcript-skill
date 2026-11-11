@@ -1,0 +1,17 @@
+{
+  "name": "dsh-audio-transcript-skill",
+  "version": "1.0.0",
+  "description": "DSH provider for the audio transcript skill",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dsh-plugin.js",
+  "exports": {
+    ".": "./dsh-plugin.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },
+  "files": ["dsh-plugin.js", "cordis.patch.yml", "SKILL.md", "LICENSE", "README*.md", "*.json", "*.txt", "*.md", "assets", "examples", "scripts", "skins", "templates"],
+  "scripts": { "test": "node --test test/*.test.js" },
+  "engines": { "node": ">=18" }
+}

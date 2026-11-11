@@ -9,13 +9,15 @@
 - 仓库：https://github.com/chengfeiai/audio-transcript-skill
 - 发布页：https://github.com/chengfeiai/audio-transcript-skill/releases/tag/v1.0.0-dsh
 
-## 在 DSH 中安装
+## DSH 插件安装
 
-1. 解压出 `录音转写/` 文件夹。
-2. 把整个文件夹放进当前 DSH profile 的 skills 目录（默认 `~/.dsh/skills/`）。
-3. 重新加载后即可通过技能名 `录音转写` 调用。
+本仓库提供 DSH 插件 bundle，安装后向技能注册表提供 `audio-transcript`，资源从插件包读取，不会自动安装转写依赖或模型。卸载插件会移除注册项，但不会删除用户手动创建的数据。转写功能需要 Apple Silicon macOS 和自行配置的 Python、模型等依赖；只生成交互纪要的渲染链路使用 Python 标准库。
 
-`SKILL.md` 的 frontmatter 按 DSH 约定组织：
+## 手动安装 Skill
+
+插件方式以 `audio-transcript` 注册技能；下述原始文件仅供支持原始技能名称的其他宿主使用，不能保证当前 DSH 文件系统扫描器接受中文技能名。
+
+原始 `SKILL.md` 的 frontmatter：
 
 ```yaml
 ---
